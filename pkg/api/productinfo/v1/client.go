@@ -2,7 +2,6 @@ package v1
 
 import (
 	"context"
-	client "github.com/hugomatus/order-system/productinfo/api/v1"
 	"google.golang.org/grpc"
 	"log"
 	"time"
@@ -12,7 +11,7 @@ const (
 	address = "localhost:50051"
 )
 
-func Run() {
+func NewClient() {
 
 	// Set up a connection to the server.
 	conn, err := grpc.Dial(address, grpc.WithInsecure())
@@ -20,7 +19,7 @@ func Run() {
 		log.Fatalf("did not connect: %v", err)
 	}
 	defer conn.Close()
-	productInfoClient := client.NewProductInfoClient(conn)
+	productInfoClient := NewProductInfoClient(conn)
 
 	// Contact the server and print out its response.
 	name := "Apple iPhone 11"
@@ -28,13 +27,13 @@ func Run() {
 	price := float32(699.00)
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
-	r, err := productInfoClient.AddProduct(ctx, &client.Product{Name: name, Description: description, Price: price})
+	r, err := productInfoClient.AddProduct(ctx, &Product{Name: name, Description: description, Price: price})
 	if err != nil {
 		log.Fatalf("Could not add product: %v", err)
 	}
 	log.Printf("Product ID: %s added successfully", r.Value)
 
-	product, err := productInfoClient.GetProduct(ctx, &client.ProductID{Value: r.Value})
+	product, err := productInfoClient.GetProduct(ctx, &ProductID{Value: r.Value})
 	if err != nil {
 		log.Fatalf("Could not get product: %v", err)
 	}
