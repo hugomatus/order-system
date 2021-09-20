@@ -3,8 +3,7 @@ package v1
 import (
 	"context"
 	"github.com/gofrs/uuid"
-	"github.com/hugomatus/order-system/productinfo/api/v1"
-	//v1 "github.com/hugomatus/order-system/productinfo/api/v1"
+	v1 "github.com/hugomatus/order-system/api/productinfo/v1"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
@@ -48,7 +47,7 @@ func (s *server) GetProduct(ctx context.Context, in *v1.ProductID) (*v1.Product,
 	return nil, status.Errorf(codes.NotFound, "Product does not exist.", in.Value)
 }
 
-func Run() {
+func Start() {
 	lis, err := net.Listen("tcp", port)
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
