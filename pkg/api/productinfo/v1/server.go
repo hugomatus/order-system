@@ -57,6 +57,5 @@ func NewServer() {
 	if err := s.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %v", err)
 	}
-	log.Println("Done Registering: RegisterProductInfoServer")
 	log.Println("Ready: Server up")
 }
