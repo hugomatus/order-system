@@ -52,8 +52,11 @@ func NewServer() {
 		log.Fatalf("failed to listen: %v", err)
 	}
 	s := grpc.NewServer()
+	log.Println("Start Registering: RegisterProductInfoServer")
 	RegisterProductInfoServer(s, &server{})
 	if err := s.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %v", err)
 	}
+	log.Println("Done Registering: RegisterProductInfoServer")
+	log.Println("Ready: Server up")
 }
