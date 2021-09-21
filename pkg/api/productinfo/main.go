@@ -48,6 +48,7 @@ func (s *server) GetProduct(ctx context.Context, in *v1.ProductID) (*v1.Product,
 }
 
 func main() {
+	log.Println("Starting: Server...")
 	lis, err := net.Listen("tcp", port)
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)

@@ -147,6 +147,7 @@ func (s *server) ProcessOrders(stream pb.OrderManagement_ProcessOrdersServer) er
 
 
 func main() {
+	log.Println("Starting: Server...")
 	initSampleData()
 	lis, err := net.Listen("tcp", port)
 	if err != nil {
@@ -159,6 +160,7 @@ func main() {
 	if err := s.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %v", err)
 	}
+	log.Println("Ready: Server up")
 }
 
 func initSampleData() {
