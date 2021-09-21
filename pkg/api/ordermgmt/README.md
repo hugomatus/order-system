@@ -1,5 +1,2 @@
 # OrderManagement
-
----
-
 ## a gRPC service

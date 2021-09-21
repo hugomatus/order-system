@@ -1,5 +1,3 @@
 # ProductInfo
 ## a gRPC service
 
----
-
